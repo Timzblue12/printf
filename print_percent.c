@@ -1,32 +1,23 @@
 #include "main.h"
 
 /**
- * _strlen - finds the lenght of a string
- * @s: string
- * Return: an integer.
+ * print_percent - Prints a percent sign
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
  */
-
-int _strlen(char *s)
+int print_percent(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
-	int c;
-
-	for (c = 0; s[c] != 0; c++)
-		;
-	return (c);
-
-}
-
-/**
- * _strlenc - finds length of a string but for constant characters
- * @s: string
- * Return: integer
- */
-
-int _strlenc(const char *s)
-{
-	int c;
-
-	for (c = 0; s[c] != 0; c++)
-		;
-	return (c);
-}
+	UNUSED(types);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
+	return (write(1, "%%", 1));
+print_percent.c}
