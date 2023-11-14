@@ -1,12 +1,11 @@
 #include "main.h"
 
 /**
- * print_revs - this function prints a string in reverse
+ * print_revs - function that prints a str in reverse
  * @args: type struct va_arg where is allocated printf arguments
  *
- * Return:(The string)
+ * Return: the string
  */
-
 int print_revs(va_list args)
 {
 

@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- * print_exc_string - prints exclusuive string.
+ * print_exc_string - print exclusuives string.
  * @val: parameter.
- * Return: integer
+ * Return: integer.
  */
 
 int print_exc_string(va_list val)
@@ -18,20 +18,20 @@ int print_exc_string(va_list val)
 	{
 		if (s[i] < 32 || s[i] >= 127)
 		{
-			putchar('\\');
-			putchar('x');
+			_putchar('\\');
+			_putchar('x');
 			length = length + 2;
 			value = s[i];
 			if (value < 16)
 			{
-				putchar('0');
+				_putchar('0');
 				length++;
 			}
 			length = length + print_HEX_extra(value);
 		}
 		else
 		{
-			putchar(s[i]);
+			_putchar(s[i]);
 			length++;
 		}
 	}
