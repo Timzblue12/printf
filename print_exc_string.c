@@ -18,20 +18,20 @@ int print_exc_string(va_list val)
 	{
 		if (s[i] < 32 || s[i] >= 127)
 		{
-			_putchar('\\');
-			_putchar('x');
+			putchar('\\');
+			putchar('x');
 			length = length + 2;
 			value = s[i];
 			if (value < 16)
 			{
-				_putchar('0');
+				putchar('0');
 				length++;
 			}
 			length = length + print_HEX_extra(value);
 		}
 		else
 		{
-			_putchar(s[i]);
+			putchar(s[i]);
 			length++;
 		}
 	}

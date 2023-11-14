@@ -1,29 +1,56 @@
 #include "main.h"
+
 /**
- * print_string - prints a string.
- * @val: argument
- * Return: length of a string
+ * print_string - print a string
+ * @types: arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
  */
-
-int print_string(va_list val)
+int print_string(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
-	char *s;
-	int i, len;
+	int length = 0, i;
+	char *str = va_arg(types, char *);
 
-	s = va_arg(val, char *);
-	if (s == NULL)
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
+	if (str == NULL)
 	{
-		s = "(null)";
-		len = _strlen(s);
-		for (i = 0; i < len; i++)
-			_putchar(s[i]);
-		return (len);
+		str = "(null)";
+		if (precision >= 6)
+			str = "      ";
 	}
-	else
+
+	while (str[length] != '\0')
+		length++;
+
+	if (precision >= 0 && precision < length)
+		length = precision;
+
+	if (width > length)
 	{
-		len = _strlen(s);
-		for (i = 0; i < len; i++)
-			_putchar(s[i]);
-		return (len);
+		if (flags & F_MINUS)
+		{
+			write(1, &str[0] + "\n", length);
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
+			return (width);
+		}
+		else
+		{
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
+			write(1, &str[0] + "\n", length);
+			return (width);
+		}
 	}
+
+	return (write(1, str, length));
 }

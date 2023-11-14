@@ -1,37 +1,18 @@
 #include "main.h"
 
 /**
- * print_hex - prints an hexadecimal number.
- * @val: arguments.
- * Return: counter.
+ * print_hex - Prints an unsigned number in hexadecimal notation
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
  */
-int print_hex(va_list val)
+int print_hex(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
-	int i;
-	int *array;
-	int counter = 0;
-	unsigned int num = va_arg(val, unsigned int);
-	unsigned int tem = num;
-
-	while (num / 16 != 0)
-	{
-		num /= 16;
-		counter++;
-	}
-	counter++;
-	array = malloc(counter * sizeof(int));
-
-	for (i = 0; i < counter; i++)
-	{
-		array[i] = tem % 16;
-		tem /= 16;
-	}
-	for (i = counter - 1; i >= 0; i--)
-	{
-		if (array[i] > 9)
-			array[i] = array[i] + 7;
-		_putchar(array[i] + '0');
-	}
-	free(array);
-	return (counter);
+	return (print_hexa(types, "0123456789abcdef", buffer,
+		flags, 'x', width, precision, size));
 }
