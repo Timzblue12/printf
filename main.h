@@ -33,15 +33,20 @@ typedef struct format
 	int (*function)();
 } convert;
 
+#include "main.h"
+
+int get_size(const char *format, int *i);
+int get_width(const char *format, int *i, va_list list);
+int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
+        int flags, int width, int precision, int size);
 int print_binary(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_hex(va_list types, char buffer[],
         int flags, int width, int precision, int size);
 int print_char(va_list types, char buffer[],
         int flags, int width, int precision, int size);
-int _printf(const char *format, ...);
-<<<<<<< HEAD
 int print_exc_string(va_list val);
+int _printf(const char *format, ...);
+int print_hex(va_list types, char buffer[],
+        int flags, int width, int precision, int size);
 int print_hexa_upper(va_list types, char buffer[],
         int flags, int width, int precision, int size);
 int print_hexa(va_list types, char map_to[], char buffer[],
@@ -54,32 +59,15 @@ int print_percent(va_list types, char buffer[],
         int flags, int width, int precision, int size);
 int print_pointer(va_list types, char buffer[],
         int flags, int width, int precision, int size);
+int print_revs(va_list args);
+int print_rot13(va_list args);
 int print_string(va_list types, char buffer[],
         int flags, int width, int precision, int size);
 int print_unsigned(va_list types, char buffer[],
         int flags, int width, int precision, int size);
-=======
-int get_size(const char *format, int *i);
-int get_width(const char *format, int *i, va_list list);
-int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
-	int flags, int width, int precision, int size);
-int is_printable(char c);
 int append_hexa_code(char ascii_code, char buffer[], int i);
-int is_digit(char c);
-long int convert_size_number(long int num, int size);
-long int convert_size_unsgnd(unsigned long int num, int size);
+int is_printable(char c);
 int handle_write_char(char c, char buffer[],
-	int flags, int width, int precision, int size);
-int write_number(int is_negative, int ind, char buffer[],
-	int flags, int width, int precision, int size);
-int write_num(int ind, char buffer[],
-	int flags, int width, int prec,
-	int length, char padd, char extra_c);
-int write_unsgnd(int is_negative, int ind,
-	char buffer[],
-	int flags, int width, int precision, int size);
-int write_pointer(char buffer[], int ind, int length,
-	int width, int flags, char padd, char extra_c, int padd_start);
+        int flags, int width, int precision, int size);
 
 #endif
->>>>>>> bf4d6fa3ebc70d22bbae90e3c612d75ac5209fde
